@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Volunteer Invitation</title>
+</head>
+<body>
+    <h1>Volunteer Invitation Form</h1>
+    <p>Hello <span id="recipientNamePlaceholder">[Recipient Name]</span>!</p>
+    <p>You have been invited to volunteer for an event held on July 1st. Please respond to this email to sign up as a volunteer.</p>
+    <p>Thanks!</p>
+    <p><span id="hostNamePlaceholder">[Host Name]</span></p>
+
+    <form id="invitationForm">
+        <label for="recipientNameInput">Recipient's Name:</label>
+        <input type="text" id="recipientNameInput" name="recipientName"><br>
+
+        <label for="hostNameInput">Your Name (Host):</label>
+        <input type="text" id="hostNameInput" name="hostName"><br>
+
+        <button type="submit">Generate Invitation</button>
+    </form>
+
+    <script>
+        document.getElementById('invitationForm').onsubmit = function() {
+            // Get user inputs
+            var myRecipientName = document.getElementById('recipientNameInput').value;
+            var myHostName = document.getElementById('hostNameInput').value;
+
+            // Set the innerHTML of the span elements
+            document.getElementById('recipientNamePlaceholder').innerHTML = myRecipientName;
+            document.getElementById('hostNamePlaceholder').innerHTML = myHostName;
+
+            // Prevent the form from actually submitting
+            return false;
+        };
+    </script>
+</body>
+</html>
