@@ -1,13 +1,14 @@
-//function created to replace the content
+// Function created to replace the content dynamically based on form inputs
 function replaceContent() {
-	//declaring the variables
-	var myRecipientName;
-	
-	//setting the variable to the input field's id named recipientNameInput's value
-	myRecipientName = document.getElementById("recipientNameInput").value;
-	
-	console.log('Variable myRecipientName: ' + myRecipientName);
-	
-	//setting the HTML code in the span id recipientNamePlaceholder with the variable 
-	document.getElementById("recipientNamePlaceholder").innerHTML = myRecipientName;
-} 
+    // Declare variables for both recipient and host names
+    var myRecipientName = document.getElementById("recipientNameInput").value;
+    var myHostName = document.getElementById("hostNameInput").value;
+
+    // Debugging logs to console (can be removed in production)
+    console.log('Recipient Name: ' + myRecipientName);
+    console.log('Host Name: ' + myHostName);
+
+    // Set the HTML content in the respective span ids with the variable values
+    document.getElementById("recipientNamePlaceholder").innerHTML = myRecipientName;
+    document.getElementById("hostNamePlaceholder").innerHTML = myHostName;
+}
