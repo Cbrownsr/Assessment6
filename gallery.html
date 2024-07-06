@@ -3,6 +3,16 @@
 <head>
     <title>Gallery Page - Image Rollovers</title>
     <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <style>
+        /* Additional style for image hover effect */
+        #gallery img {
+            transition: transform 0.3s ease; /* Smooth transition for transform */
+        }
+        #gallery img:hover {
+            transform: scale(1.2); /* Enlarge image on hover */
+            z-index: 10; /* Ensure the image is above others */
+        }
+    </style>
 </head>
 <body>
     <header>
