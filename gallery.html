@@ -29,7 +29,26 @@
         </nav>
     </header>
     <section id="gallery">
-        <!-- Gallery content as before -->
+        <div class="gallery">
+            <a target="_blank" href="images/firefighter.jpg">
+                <img src="images/firefighter.jpg" alt="Firefighter" width="300" height="200">
+            </a>
+        </div>
+        <div class="gallery">
+            <a target="_blank" href="images/work.jpg">
+                <img src="images/work.jpg" alt="Work" width="300" height="200">
+            </a>
+        </div>
+        <div class="gallery">
+            <a target="_blank" href="images/silhouette.jpg">
+                <img src="images/silhouette.jpg" alt="Silhouette" width="300" height="200">
+            </a>
+        </div>
+        <div class="gallery">
+            <a target="_blank" href="images/event.jpg">
+                <img src="images/event.jpg" alt="Event" width="300" height="200">
+            </a>
+        </div>
     </section>
     <footer>This site is for IT3515 tasks.</footer>
 
@@ -38,25 +57,20 @@
             preloadGalleryImages();
         });
 
-        // Adjusted preloadGalleryImages function
         function preloadGalleryImages() {
-            var galleryImages = document.querySelectorAll('#gallery img');
-            galleryImages.forEach(img => {
-                var originalSrc = img.src;
+            document.querySelectorAll('#gallery img').forEach(img => {
+                var originalSrc = img.getAttribute('src');
                 var rolloverSrc = originalSrc.replace('.jpg', '_over.jpg');
 
                 var rolloverImg = new Image();
-                rolloverImg.onload = function() {
-                    console.log("Preloaded: " + rolloverSrc);
-                };
-                rolloverImg.src = rolloverSrc;
+                rolloverImg.src = rolloverSrc; // preload rollover image
 
-                img.addEventListener('mouseover', function() {
-                    img.src = rolloverSrc;
-                });
-                img.addEventListener('mouseout', function() {
-                    img.src = originalSrc;
-                });
+                img.onmouseover = function() {
+                    this.setAttribute('src', rolloverSrc);
+                };
+                img.onmouseout = function() {
+                    this.setAttribute('src', originalSrc);
+                };
             });
         }
     </script>
