@@ -30,16 +30,24 @@
     </header>
     <section id="gallery">
         <div class="gallery">
-            <img src="images/firefighter.jpg" alt="Firefighter" width="300" height="200">
+            <a target="_blank" href="images/firefighter.jpg">
+                <img src="images/firefighter.jpg" alt="Firefighter" width="300" height="200">
+            </a>
         </div>
         <div class="gallery">
-            <img src="images/work.jpg" alt="Work" width="300" height="200">
+            <a target="_blank" href="images/work.jpg">
+                <img src="images/work.jpg" alt="Work" width="300" height="200">
+            </a>
         </div>
         <div class="gallery">
-            <img src="images/silhouette.jpg" alt="Silhouette" width="300" height="200">
+            <a target="_blank" href="images/silhouette.jpg">
+                <img src="images/silhouette.jpg" alt="Silhouette" width="300" height="200">
+            </a>
         </div>
         <div class="gallery">
-            <img src="images/event.jpg" alt="Event" width="300" height="200">
+            <a target="_blank" href="images/event.jpg">
+                <img src="images/event.jpg" alt="Event" width="300" height="200">
+            </a>
         </div>
     </section>
     <footer>This site is for IT3515 tasks.</footer>
@@ -50,25 +58,18 @@
         });
 
         function preloadGalleryImages() {
-            const imagesToPreload = [];
             document.querySelectorAll('#gallery img').forEach(img => {
-                const originalSrc = img.src;
-                const rolloverSrc = originalSrc.replace('.jpg', '_over.jpg');
+                var originalSrc = img.getAttribute('src');
+                var rolloverSrc = originalSrc.replace('.jpg', '_over.jpg');
 
-                // Preload original image
-                const originalImg = new Image();
-                originalImg.src = originalSrc;
-                imagesToPreload.push(originalImg);
+                var rolloverImg = new Image();
+                rolloverImg.src = rolloverSrc; // preload rollover image
 
-                // Preload rollover image
-                const rolloverImg = new Image();
-                rolloverImg.src = rolloverSrc;
-                imagesToPreload.push(rolloverImg);
-
-                // Setup event listeners once images are preloaded
-                rolloverImg.onload = () => {
-                    img.onmouseover = () => img.src = rolloverSrc;
-                    img.onmouseout = () => img.src = originalSrc;
+                img.onmouseover = function() {
+                    this.setAttribute('src', rolloverSrc);
+                };
+                img.onmouseout = function() {
+                    this.setAttribute('src', originalSrc);
                 };
             });
         }
