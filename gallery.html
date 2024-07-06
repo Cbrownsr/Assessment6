@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en-US">
-
 <head>
-    <title>Invitation Page</title>
+    <title>Gallery Page - Image Rollovers</title>
     <link rel="stylesheet" type="text/css" href="css/main.css" />
 </head>
-
 <body>
     <header>
         <div class="top">
@@ -13,56 +11,68 @@
         </div>
         <nav>
             <ul class="topnav">
-                <li><a href="index.html">Home</a>
-                </li>
-                <li><a href="invitation.html">Invitation</a>
-                </li>
-				<li><a href="volunteer.html">Volunteers</a>
-                </li>
-                <li><a href="gallery.html"  class="active">Gallery</a>
-                </li>
-                <li><a href="registration.html">Registration</a>
-                </li>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="invitation.html">Invitation</a></li>
+                <li><a href="volunteer.html">Volunteers</a></li>
+                <li><a href="gallery.html" class="active">Gallery</a></li>
+                <li><a href="registration.html">Registration</a></li>
             </ul>
-
         </nav>
     </header>
     <section id="gallery">
-
-<div class="gallery">
-  <a target="_blank" href="images/firefighter.jpg">
-    <img src="images/firefighter.jpg" alt="firefighter" width="300" height="200">
-  </a>
-  <div class="desc">Add a description of the image here</div>
-</div>
-
-<div class="gallery">
-  <a target="_blank" href="images/work.jpg">
-    <img src="images/work.jpg" alt="work" width="300" height="200">
-  </a>
-  <div class="desc">Add a description of the image here</div>
-</div>
-
-<div class="gallery">
-  <a target="_blank" href="images/silhouette.jpg">
-    <img src="images/silhouette.jpg" alt="silhouette" width="300" height="200">
-  </a>
-  <div class="desc">Add a description of the image here</div>
-</div>
-
-<div class="gallery">
-  <a target="_blank" href="images/event.jpg">
-    <img src="images/event.jpg" alt="event" width="300" height="200">
-  </a>
-  <div class="desc">Add a description of the image here</div>
-</div>
-
+        <div class="gallery">
+            <a target="_blank" href="images/firefighter.jpg">
+                <img src="images/firefighter.jpg" alt="firefighter" width="300" height="200">
+            </a>
+        </div>
+        <div class="gallery">
+            <a target="_blank" href="images/work.jpg">
+                <img src="images/work.jpg" alt="work" width="300" height="200">
+            </a>
+        </div>
+        <div class="gallery">
+            <a target="_blank" href="images/silhouette.jpg">
+                <img src="images/silhouette.jpg" alt="silhouette" width="300" height="200">
+            </a>
+        </div>
+        <div class="gallery">
+            <a target="_blank" href="images/event.jpg">
+                <img src="images/event.jpg" alt="event" width="300" height="200">
+            </a>
+        </div>
     </section>
+    <footer>This site is for IT3515 tasks.</footer>
 
+    <script>
+        function preloadGalleryImages() {
+            document.querySelectorAll('#gallery img').forEach(img => {
+                var rolloverImg = new Image();
+                rolloverImg.src = img.src.replace('.jpg', '_over.jpg');
+            });
+        }
 
+        function imageMouseOver() {
+            this.src = this.src.replace('.jpg', '_over.jpg');
+        }
 
-    <footer>This events site is for IT3515 tasks.
-    </footer>
+        function imageMouseOut() {
+            this.src = this.src.replace('_over.jpg', '.jpg');
+        }
+
+        function setupRollovers() {
+            var images = document.querySelectorAll('#gallery img');
+            images.forEach(img => {
+                img.addEventListener('mouseover', imageMouseOver);
+                img.addEventListener('mouseout', imageMouseOut);
+            });
+        }
+
+        function onPageLoadGallery() {
+            preloadGalleryImages();
+            setupRollovers();
+        }
+
+        document.addEventListener('DOMContentLoaded', onPageLoadGallery);
+    </script>
 </body>
-
 </html>

@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="en-US">
-
 <head>
-    <title>Invitation Page</title>
+    <title>Homepage - Banner Cycling</title>
     <link rel="stylesheet" type="text/css" href="css/main.css" />
 </head>
-
 <body>
     <header>
         <div class="top">
@@ -13,30 +11,47 @@
         </div>
         <nav>
             <ul class="topnav">
-                <li><a href="index.html" class="active">Home</a>
-                </li>
-                <li><a href="invitation.html">Invitation</a>
-                </li>
-				<li><a href="volunteer.html">Volunteers</a>
-                </li>
-                <li><a href="gallery.html">Gallery</a>
-                </li>
-                <li><a href="registration.html">Registration</a>
-                </li>
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="invitation.html">Invitation</a></li>
+                <li><a href="volunteer.html">Volunteers</a></li>
+                <li><a href="gallery.html">Gallery</a></li>
+                <li><a href="registration.html">Registration</a></li>
             </ul>
-
         </nav>
     </header>
     <section id="bannerImages">
-	Banner Images<br/>
-<img src="images/banner1.jpg" alt="Banner"/>
-<img src="images/banner2.jpg" alt="Banner"/>
-<img src="images/banner3.jpg" alt="Banner"/>
+        <!-- Single cycling banner image -->
+        <img id="bannerImg" src="images/banner1.jpg" alt="Banner" />
     </section>
+    <!-- Other page content goes here -->
+    <footer>This site is for IT3515 tasks.</footer>
+    
+    <script>
+        var images = [];
+        var currentIndex = 0;
 
+        function preloadImages() {
+            var imgUrls = ["images/banner1.jpg", "images/banner2.jpg", "images/banner3.jpg"];
+            imgUrls.forEach(function(url) {
+                var img = new Image();
+                img.src = url;
+                images.push(img);
+            });
+        }
 
-    <footer>This events site is for IT3515 tasks.
-    </footer>
+        function cycleBanners() {
+            var bannerImg = document.getElementById('bannerImg');
+            bannerImg.src = images[currentIndex % images.length].src;
+            currentIndex++;
+            setTimeout(cycleBanners, 3000);
+        }
+
+        function onPageLoad() {
+            preloadImages();
+            cycleBanners();
+        }
+
+        document.addEventListener('DOMContentLoaded', onPageLoad);
+    </script>
 </body>
-
 </html>
