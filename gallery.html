@@ -22,28 +22,37 @@
     <section id="gallery">
         <div class="gallery">
             <a target="_blank" href="images/firefighter.jpg">
-                <img src="images/firefighter.jpg" alt="firefighter" width="300" height="200">
+                <img src="images/firefighter.jpg" alt="Firefighter" width="300" height="200">
             </a>
+            <div class="desc">Add a description of the image here</div>
         </div>
         <div class="gallery">
             <a target="_blank" href="images/work.jpg">
-                <img src="images/work.jpg" alt="work" width="300" height="200">
+                <img src="images/work.jpg" alt="Work" width="300" height="200">
             </a>
+            <div class="desc">Add a description of the image here</div>
         </div>
         <div class="gallery">
             <a target="_blank" href="images/silhouette.jpg">
-                <img src="images/silhouette.jpg" alt="silhouette" width="300" height="200">
+                <img src="images/silhouette.jpg" alt="Silhouette" width="300" height="200">
             </a>
+            <div class="desc">Add a description of the image here</div>
         </div>
         <div class="gallery">
             <a target="_blank" href="images/event.jpg">
-                <img src="images/event.jpg" alt="event" width="300" height="200">
+                <img src="images/event.jpg" alt="Event" width="300" height="200">
             </a>
+            <div class="desc">Add a description of the image here</div>
         </div>
     </section>
     <footer>This site is for IT3515 tasks.</footer>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            preloadGalleryImages();
+            setupRollovers();
+        });
+
         function preloadGalleryImages() {
             document.querySelectorAll('#gallery img').forEach(img => {
                 var rolloverImg = new Image();
@@ -51,28 +60,17 @@
             });
         }
 
-        function imageMouseOver() {
-            this.src = this.src.replace('.jpg', '_over.jpg');
-        }
-
-        function imageMouseOut() {
-            this.src = this.src.replace('_over.jpg', '.jpg');
-        }
-
         function setupRollovers() {
-            var images = document.querySelectorAll('#gallery img');
-            images.forEach(img => {
-                img.addEventListener('mouseover', imageMouseOver);
-                img.addEventListener('mouseout', imageMouseOut);
+            var galleryImages = document.querySelectorAll('#gallery img');
+            galleryImages.forEach(img => {
+                img.addEventListener('mouseover', function() {
+                    this.src = this.src.replace('.jpg', '_over.jpg');
+                });
+                img.addEventListener('mouseout', function() {
+                    this.src = this.src.replace('_over.jpg', '.jpg');
+                });
             });
         }
-
-        function onPageLoadGallery() {
-            preloadGalleryImages();
-            setupRollovers();
-        }
-
-        document.addEventListener('DOMContentLoaded', onPageLoadGallery);
     </script>
 </body>
 </html>
