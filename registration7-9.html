@@ -86,48 +86,5 @@
     </section>
 
     <footer>This events site is for IT3515 tasks.</footer>
-    <script>
-        function validateForm() {
-            let firstInvalid = null;
-            let valid = true;
-
-            const addError = (field, message) => {
-                const errorSpan = field.nextElementSibling;
-                errorSpan.textContent = message;
-                valid = false;
-                if (!firstInvalid) firstInvalid = field;
-            };
-
-            const username = document.getElementById('userName');
-            if (!username.value.match(/^[a-zA-Z0-9]+$/)) {
-                addError(username, 'Username must only contain letters and numbers.');
-            }
-
-            const password = document.getElementById('password');
-            if (password.value.length < 8) {
-                addError(password, 'Password must be at least 8 characters.');
-            }
-
-            const passwordVerify = document.getElementById('passwordVerify');
-            if (password.value !== passwordVerify.value) {
-                addError(passwordVerify, 'Passwords do not match.');
-            }
-
-            const email = document.getElementById('email');
-            if (email.value && !email.value.match(/^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/)) {
-                addError(email, 'Email format is invalid.');
-            }
-
-            const phoneNumber = document.getElementById('phoneNumber');
-            if (phoneNumber.value && !phoneNumber.value.match(/^\(\d{3}\) \d{3}-\d{4}$/)) {
-                addError(phoneNumber, 'Phone number format is invalid. Format required: (xxx) xxx-xxxx');
-            }
-
-            if (!valid) {
-                firstInvalid.focus();
-            }
-            return valid;
-        }
-    </script>
 </body>
 </html>
